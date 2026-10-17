@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%" style="background:#fff8f6; font-family: monospace;">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f8b4ab" stroke-width="0.8" opacity="0.6"/>
+      <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#e06d60" stroke-width="1.4" opacity="0.8"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#grid)" />
+  <text x="30" y="35" font-size="14" font-weight="bold" fill="#991b1b">APOLLO HEART INSTITUTE // 12-LEAD RHYTHM STRIP (LEAD II)</text>
+  <text x="30" y="55" font-size="11" fill="#7f1d1d">PATIENT: AARAV SHARMA (P-1001) | HR: 74 BPM | PR: 158 ms | QRS: 88 ms | QTc: 412 ms</text>
+  <path d="M 30 200 L 70 200 L 80 195 L 90 200 L 110 200 L 115 208 L 125 90 L 135 235 L 142 200 L 160 200 L 175 180 L 195 200 L 250 200 L 260 195 L 270 200 L 290 200 L 295 208 L 305 90 L 315 235 L 322 200 L 340 200 L 355 180 L 375 200 L 430 200 L 440 195 L 450 200 L 470 200 L 475 208 L 485 90 L 495 235 L 502 200 L 520 200 L 535 180 L 555 200 L 610 200 L 620 195 L 630 200 L 650 200 L 655 208 L 665 90 L 675 235 L 682 200 L 700 200 L 715 180 L 735 200 L 770 200" 
+        fill="none" stroke="#b91c1c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="30" y="360" font-size="11" fill="#450a0a">INTERPRETATION: Normal sinus rhythm with early repolarization variant. Preserved ST segment.</text>
+  <text x="30" y="380" font-size="9" fill="#7f1d1d">SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 (ANCHORED TO BLOCK #1)</text>
+</svg>

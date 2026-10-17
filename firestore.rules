@@ -1,0 +1,69 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net - Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'email', 'role', 'createdAt']) &&
+        data.keys().hasOnly(['uid', 'email', 'displayName', 'role', 'patientId', 'doctorId', 'photoURL', 'createdAt', 'updatedAt']) &&
+        data.uid == request.auth.uid &&
+        data.email is string && data.email.size() <= 200 &&
+        data.role in ['patient', 'doctor'] &&
+        (!('displayName' in data) || (data.displayName is string && data.displayName.size() <= 100)) &&
+        (!('patientId' in data) || (data.patientId is string && data.patientId.size() <= 64)) &&
+        (!('doctorId' in data) || (data.doctorId is string && data.doctorId.size() <= 64)) &&
+        (!('photoURL' in data) || (data.photoURL is string && data.photoURL.size() <= 500)) &&
+        data.createdAt is string && data.createdAt.size() <= 64;
+    }
+
+    function isValidPatientNote(data, userId) {
+      return data.keys().hasAll(['id', 'userId', 'patientId', 'title', 'createdAt']) &&
+        data.keys().hasOnly(['id', 'userId', 'patientId', 'title', 'content', 'category', 'createdAt', 'updatedAt']) &&
+        data.userId == request.auth.uid &&
+        data.userId == userId &&
+        data.id is string && data.id.size() <= 128 &&
+        data.title is string && data.title.size() > 0 && data.title.size() <= 200 &&
+        (!('content' in data) || (data.content is string && data.content.size() <= 5000)) &&
+        (!('category' in data) || (data.category is string && data.category.size() <= 50)) &&
+        data.createdAt is string && data.createdAt.size() <= 64;
+    }
+
+    // User document: isolated to the authenticated owner
+    match /users/{userId} {
+      allow get: if isOwner(userId) && isValidId(userId);
+      allow list: if false; // Blanket user listing forbidden for PII privacy
+      allow create: if isOwner(userId) && isValidId(userId) && isValidUser(request.resource.data);
+      allow update: if isOwner(userId) && isValidId(userId) && isValidUser(request.resource.data) &&
+        request.resource.data.uid == resource.data.uid &&
+        request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isOwner(userId) && isValidId(userId);
+
+      // Private User Notes subcollection
+      match /notes/{noteId} {
+        allow get: if isOwner(userId) && isValidId(userId) && isValidId(noteId);
+        allow list: if isOwner(userId) && isValidId(userId);
+        allow create: if isOwner(userId) && isValidId(userId) && isValidId(noteId) && isValidPatientNote(request.resource.data, userId);
+        allow update: if isOwner(userId) && isValidId(userId) && isValidId(noteId) && isValidPatientNote(request.resource.data, userId) &&
+          request.resource.data.userId == resource.data.userId &&
+          request.resource.data.createdAt == resource.data.createdAt;
+        allow delete: if isOwner(userId) && isValidId(userId) && isValidId(noteId);
+      }
+    }
+  }
+}

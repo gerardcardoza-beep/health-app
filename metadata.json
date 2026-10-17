@@ -1,0 +1,6 @@
+{
+  "name": "HealthLedger Vault - Decentralized Patient EHR & Clinical Portal",
+  "description": "Secure cross-platform patient healthcare portal with blockchain audit ledger, hospital & insurance API linking, doctor diagnosis & scan uploads, medication tracking, and Python MCP protocol integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

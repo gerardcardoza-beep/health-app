@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%" style="background:#0f172a; font-family: sans-serif;">
+  <rect width="100%" height="100%" fill="#090d16" />
+  <circle cx="300" cy="280" r="180" fill="#1e293b" opacity="0.8" />
+  <ellipse cx="300" cy="280" rx="140" ry="160" fill="#334155" opacity="0.7" />
+  <path d="M 220 250 Q 300 220 380 250 Q 370 340 300 350 Q 230 340 220 250 Z" fill="#475569" />
+  <!-- Meniscus indicators -->
+  <path d="M 230 280 Q 250 285 270 290 Q 260 305 235 300 Z" fill="#cbd5e1" />
+  <path d="M 330 290 Q 350 285 370 280 Q 365 300 340 305 Z" fill="#e2e8f0" />
+  <circle cx="248" cy="292" r="12" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3" />
+  <line x1="236" y1="292" x2="150" y2="340" stroke="#f59e0b" stroke-width="1.5" />
+  <text x="80" y="360" fill="#fcd34d" font-size="12" font-family="monospace">GRADE 1 MEDIAL MENISCAL TEAR / FRAY</text>
+  
+  <text x="20" y="35" fill="#38bdf8" font-size="13" font-family="monospace">FORTIS ORTHOPEDIC RADIOLOGY // CORONAL PD-FAT SAT MRI</text>
+  <text x="20" y="55" fill="#94a3b8" font-size="11" font-family="monospace">PATIENT: AARAV SHARMA (P-1001) | R KNEE | TR 2800 / TE 35</text>
+  <text x="20" y="560" fill="#94a3b8" font-size="10" font-family="monospace">BLOCKCHAIN ANCHOR: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945</text>
+  <text x="20" y="580" fill="#10b981" font-size="10" font-family="monospace">CRYPTOGRAPHIC INTEGRITY: VERIFIED ON BLOCK #2</text>
+</svg>
